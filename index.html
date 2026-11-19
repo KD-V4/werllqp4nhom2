@@ -408,8 +408,28 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-[#1A1A1A] text-[#E8BA5A] text-center py-4 mt-auto border-t-2 border-[#D4A237]">
-        <p class="text-sm">&copy; 2026 Quản lý bài tập nhóm. All rights reserved.</p>
+<footer class="bg-[#1A1A1A] text-[#FAF6EE] mt-auto border-t-4 border-[#D4A237]">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-[#E8BA5A]/25 text-left">
+                <div>
+                    <h3 class="text-base font-bold text-[#E8BA5A] uppercase tracking-wider mb-2">Portal Nhóm Học Tập</h3>
+                </div>
+
+                <div>
+                    <h3 class="text-base font-bold text-[#E8BA5A] uppercase tracking-wider mb-2">Điều Hướng Nhanh</h3>
+                    <ul class="space-y-1.5 text-sm text-[#E5D5C0]">
+                        <li><button onclick="switchTab('about')" class="hover:text-[#E8BA5A] transition">• Trang Chủ &amp; Giới Thiệu</button></li>
+                        <li><button onclick="switchTab('members')" class="hover:text-[#E8BA5A] transition">• Danh Sách Thành Viên</button></li>
+                        <li><button onclick="switchTab('assignments')" class="hover:text-[#E8BA5A] transition">• Kho Bài Tập</button></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm text-[#E8BA5A]">
+                <p>&copy; 2026 Quản lý bài tập nhóm. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>

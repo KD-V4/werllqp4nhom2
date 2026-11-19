@@ -244,33 +244,38 @@
             </div>
 
             <div class="member-grid">
-                <div class="card" onclick="openProfile('duyen')">
-                    <img id="card-avatar-duyen" src="duyen.jpg" alt="Võ Thị Kim Duyên" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Kim+Duyên'">
+                <div class="card" onclick="goToMemberBranch('duyen')">
+                    <img src="duyen.jpg" alt="Võ Thị Kim Duyên" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Kim+Duyên'">
                     <h3 class="name">Võ Thị Kim Duyên</h3>
                     <p class="role">Thành viên</p>
-                    <p id="card-bio-duyen" class="bio">Number 03</p>
+                    <p class="bio">Number 03</p>
+                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
-
-                <div class="card" onclick="openProfile('truc')">
-                    <img id="card-avatar-truc" src="truc.jpg" alt="Lê Thanh Trúc" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Thanh+Trúc'">
+            
+                <div class="card" onclick="goToMemberBranch('truc')">
+                    <img src="truc.jpg" alt="Lê Thanh Trúc" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Thanh+Trúc'">
                     <h3 class="name">Lê Thanh Trúc</h3>
                     <p class="role">Nhóm trưởng</p>
-                    <p id="card-bio-truc" class="bio">Number 16</p>
+                    <p class="bio">Number 16</p>
+                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
-
-                <div class="card" onclick="openProfile('chau')">
-                    <img id="card-avatar-chau" src="chau.jpg" alt="Phạm Ngọc Châu" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Ngọc+Châu'">
+            
+                <div class="card" onclick="goToMemberBranch('chau')">
+                    <img src="chau.jpg" alt="Phạm Ngọc Châu" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Ngọc+Châu'">
                     <h3 class="name">Phạm Ngọc Châu</h3>
                     <p class="role">Nhóm trưởng</p>
-                    <p id="card-bio-chau" class="bio">Number 02</p>
+                    <p class="bio">Number 02</p>
+                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
-
-                <div class="card" onclick="openProfile('ty')">
-                    <img id="card-avatar-ty" src="ty.jpg" alt="Đoàn Xuân Tỷ" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Xuân+Tỷ'">
+            
+                <div class="card" onclick="goToMemberBranch('ty')">
+                    <img src="ty.jpg" alt="Đoàn Xuân Tỷ" class="avatar" onerror="this.src='https://placehold.co/140x160/F3ECE0/2A7B72?text=Xuân+Tỷ'">
                     <h3 class="name">Đoàn Xuân Tỷ</h3>
-                    <p class="role">Nhóm trưởng</p>
-                    <p id="card-bio-ty" class="bio">Number 18</p>
+                    <p class="role">Trưởng nhóm</p>
+                    <p class="bio">Number 18</p>
+                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
+</div>
             </div>
         </section>
 
@@ -433,6 +438,36 @@
     </footer>
 
     <script>
+        const memberBranches = {
+            duyen: {
+                name: "Võ Thị Kim Duyên",
+                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-kim-duyen"
+            },
+            truc: {
+                name: "Lê Thanh Trúc",
+                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-thanh-truc"
+            },
+            chau: {
+                name: "Phạm Ngọc Châu",
+                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-ngoc-chau"
+            },
+            ty: {
+                name: "Đoàn Xuân Tỷ",
+                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-xuan-ty"
+            }
+        };
+        
+        function goToMemberBranch(key) {
+            const member = memberBranches[key];
+            if (!member || !member.branchUrl) return;
+        
+            if (member.branchUrl.includes("TEN_TO_CHUC_HOAC_USER")) {
+                alert("Bạn chưa cập nhật link nhánh GitHub cho " + member.name + "!");
+                return;
+            }
+        
+            window.open(member.branchUrl, "_blank", "noopener,noreferrer");
+        }        
         let assignments = [];
 
         const memberPasswords = {
@@ -857,6 +892,7 @@
         function closeViewModalOnBackdrop(event) {
             if (event.target.id === 'view-assignment-modal') closeViewModal();
         }
+            
     </script>
 </body>
 </html>

@@ -723,34 +723,11 @@
             }
         }
 
-        function switchTab(tabName) {
-            const aboutSection = document.getElementById('tab-about');
-            const membersSection = document.getElementById('tab-members');
-            const assignmentsSection = document.getElementById('tab-assignments');
-            const btnAbout = document.getElementById('btn-about');
-            const btnMembers = document.getElementById('btn-members');
-            const btnAssignments = document.getElementById('btn-assignments');
-
-            aboutSection.classList.add('hidden');
-            membersSection.classList.add('hidden');
-            assignmentsSection.classList.add('hidden');
-
-            [btnAbout, btnMembers, btnAssignments].forEach(btn => {
-                btn.classList.remove('bg-[#8C2318]', 'text-[#E8BA5A]', 'border', 'border-[#D4A237]');
-                btn.classList.add('hover:bg-[#8C2318]', 'hover:text-[#E8BA5A]');
-            });
-
-            if (tabName === 'about') {
-                aboutSection.classList.remove('hidden');
-                btnAbout.classList.add('bg-[#8C2318]', 'text-[#E8BA5A]', 'border', 'border-[#D4A237]');
-            } else if (tabName === 'members') {
-                membersSection.classList.remove('hidden');
-                btnMembers.classList.add('bg-[#8C2318]', 'text-[#E8BA5A]', 'border', 'border-[#D4A237]');
-            } else {
-                assignmentsSection.classList.remove('hidden');
-                btnAssignments.classList.add('bg-[#8C2318]', 'text-[#E8BA5A]', 'border', 'border-[#D4A237]');
-            }
-        }
+if (tabName === 'members') {
+    membersSection.classList.remove('hidden');
+    btnMembers.classList.add('bg-[#8C2318]', 'text-[#E8BA5A]', 'border', 'border-[#D4A237]');
+    if (typeof backToMemberList === 'function') backToMemberList();
+}
 
         // --- Tích hợp Firebase Firestore cho Bài Tập ---
         window.loadAssignmentsFromFirebase = async function() {

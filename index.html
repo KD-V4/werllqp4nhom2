@@ -723,11 +723,55 @@
             }
         }
 
-if (tabName === 'members') {
-    membersSection.classList.remove('hidden');
-    btnMembers.classList.add('bg-[#8C2318]', 'text-[#E8BA5A]', 'border', 'border-[#D4A237]');
-    if (typeof backToMemberList === 'function') backToMemberList();
-}
+let assignments = [];
+
+        function switchTab(tabName) {
+            const aboutSection = document.getElementById('tab-about');
+            const membersSection = document.getElementById('tab-members');
+            const assignmentsSection = document.getElementById('tab-assignments');
+
+            const btnAbout = document.getElementById('btn-about');
+            const btnMembers = document.getElementById('btn-members');
+            const btnAssignments = document.getElementById('btn-assignments');
+
+            if (aboutSection) aboutSection.classList.add('hidden');
+            if (membersSection) membersSection.classList.add('hidden');
+            if (assignmentsSection) assignmentsSection.classList.add('hidden');
+
+            const activeClasses = ['bg-[#8C2318]', 'text-[#E8BA5A]', 'font-bold', 'border', 'border-[#D4A237]'];
+            [btnAbout, btnMembers, btnAssignments].forEach((btn) => {
+                if (!btn) return;
+                btn.classList.remove(...activeClasses);
+                btn.classList.add('font-medium');
+            });
+
+            if (tabName === 'about') {
+                if (aboutSection) aboutSection.classList.remove('hidden');
+                if (btnAbout) {
+                    btnAbout.classList.remove('font-medium');
+                    btnAbout.classList.add(...activeClasses);
+                }
+            } else if (tabName === 'members') {
+                if (membersSection) membersSection.classList.remove('hidden');
+                if (btnMembers) {
+                    btnMembers.classList.remove('font-medium');
+                    btnMembers.classList.add(...activeClasses);
+                }
+                if (typeof backToMemberList === 'function') backToMemberList();
+            } else if (tabName === 'assignments') {
+                if (assignmentsSection) assignmentsSection.classList.remove('hidden');
+                if (btnAssignments) {
+                    btnAssignments.classList.remove('font-medium');
+                    btnAssignments.classList.add(...activeClasses);
+                }
+                if (typeof renderAssignments === 'function') {
+                    const searchEl = document.getElementById('search-input');
+                    renderAssignments(searchEl ? searchEl.value : '');
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // --- Tích hợp Firebase Firestore cho Bài Tập ---
         window.loadAssignmentsFromFirebase = async function() {

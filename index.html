@@ -249,7 +249,6 @@
                     <h3 class="name">Võ Thị Kim Duyên</h3>
                     <p class="role">Thành viên</p>
                     <p class="bio">Number 03</p>
-                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">kimduyen ↗</span>
                 </div>
             
                 <div class="card" onclick="goToMemberBranch('truc')">
@@ -257,7 +256,6 @@
                     <h3 class="name">Lê Thanh Trúc</h3>
                     <p class="role">Nhóm trưởng</p>
                     <p class="bio">Number 16</p>
-                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
             
                 <div class="card" onclick="goToMemberBranch('chau')">
@@ -265,7 +263,6 @@
                     <h3 class="name">Phạm Ngọc Châu</h3>
                     <p class="role">Nhóm trưởng</p>
                     <p class="bio">Number 02</p>
-                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
             
                 <div class="card" onclick="goToMemberBranch('ty')">
@@ -273,11 +270,21 @@
                     <h3 class="name">Đoàn Xuân Tỷ</h3>
                     <p class="role">Trưởng nhóm</p>
                     <p class="bio">Number 18</p>
-                    <span class="mt-3 text-xs font-bold text-[#2A7B72] underline">Mở nhánh GitHub ↗</span>
                 </div>
-</div>
+        <!-- KHUNG MỞ FILE GIỚI THIỆU RIÊNG NGAY TRÊN WEB -->
+            <div id="member-custom-view" class="hidden space-y-5">
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-[#E5D5C0] pb-4">
+                    <button onclick="backToMemberList()" class="flex items-center space-x-2 px-4 py-2 bg-[#F3ECE0] text-[#8C2318] rounded-lg hover:bg-[#E5D5C0] transition text-sm font-semibold border border-[#D4A237]">
+                        <span>⬅ Quay lại danh sách thành viên</span>
+                    </button>
+                    <span id="custom-member-badge" class="text-xs sm:text-sm font-bold text-[#2A7B72] px-3 py-1.5 bg-[#FFFDF9] rounded-lg border border-[#E5D5C0]"></span>
+                </div>
+        
+                <div class="rounded-2xl overflow-hidden border-4 border-[#C83E2B] shadow-xl bg-white">
+                    <iframe id="member-style-frame" class="w-full min-h-[540px] border-0 block"></iframe>
+                </div>
             </div>
-        </section>
+        </section>                
 
         <!-- TAB 3: Bài Tập -->
         <section id="tab-assignments" class="hidden space-y-6 max-w-3xl mx-auto">
@@ -438,38 +445,42 @@
     </footer>
 
     <script>
-        const memberBranches = {
+        const memberPages = {
             duyen: {
-                name: "Võ Thị Kim Duyên",
-                branchUrl: "https://github.com/KD-V4/werllqp4nhom2/tree/kimduyen"
+                name: "Võ Thị Kim Duyên • Number 03",
+                fileUrl: "duyen-gioi-thieu.html"
             },
             truc: {
-                name: "Lê Thanh Trúc",
-                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-thanh-truc"
+                name: "Lê Thanh Trúc • Number 16",
+                fileUrl: "truc-gioi-thieu.html"
             },
             chau: {
-                name: "Phạm Ngọc Châu",
-                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-ngoc-chau"
+                name: "Phạm Ngọc Châu • Number 02",
+                fileUrl: "chau-gioi-thieu.html"
             },
             ty: {
-                name: "Đoàn Xuân Tỷ",
-                branchUrl: "https://github.com/TEN_TO_CHUC_HOAC_USER/TEN_REPO/tree/branch-xuan-ty"
+                name: "Đoàn Xuân Tỷ • Number 18",
+                fileUrl: "ty-gioi-thieu.html"
             }
         };
         
-        function goToMemberBranch(key) {
-            const member = memberBranches[key];
-            if (!member || !member.branchUrl) return;
+        function openMemberPage(key) {
+            const member = memberPages[key];
+            if (!member || !member.fileUrl) return;
         
-            if (member.branchUrl.includes("TEN_TO_CHUC_HOAC_USER")) {
-                alert("Bạn chưa cập nhật link nhánh GitHub cho " + member.name + "!");
-                return;
-            }
+            document.getElementById("member-list-view").classList.add("hidden");
+            document.getElementById("member-custom-view").classList.remove("hidden");
+            document.getElementById("custom-member-badge").textContent = member.name;
+            document.getElementById("member-style-frame").src = member.fileUrl;
         
-            window.open(member.branchUrl, "_blank", "noopener,noreferrer");
-        }        
-        let assignments = [];
-
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        
+        function backToMemberList() {
+            document.getElementById("member-custom-view").classList.add("hidden");
+            document.getElementById("member-list-view").classList.remove("hidden");
+            document.getElementById("member-style-frame").src = "";
+        }
         const memberPasswords = {
             duyen: "kd3",
             chau: "nc2",

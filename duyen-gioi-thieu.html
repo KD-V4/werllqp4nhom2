@@ -3,640 +3,569 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trang Cá Nhân — Bố Cục Zine Collage</title>
-
-  <!-- Nạp phông chữ Plus Jakarta Sans hiện đại, hỗ trợ tiếng Việt rõ nét -->
+  <title>Hồ Sơ Cá Nhân • Vọng Lạc Edition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
-
-  <!-- Nạp Tailwind CSS qua CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-          },
-          colors: {
-            sunCream: '#F9EEDB',        /* Kem vàng nắng ấm chủ đạo */
-            ivoryCard: '#F7E7CA',       /* Giấy kem ngà ấm cho thẻ nổi */
-            peachSand: '#E89B6C',       /* Đào cam nhạt vùng giữa */
-            smokeBlue: '#2F4E63',       /* Xanh lam khói trầm vùng trên */
-            smokeDeep: '#1E3443',       /* Xanh lam khói đậm tương phản cao */
-            amberGlow: '#EBB677',       /* Vàng nắng hổ phách vùng giữa */
-            jadeSpark: '#D8E88C',       /* Ánh ngọc phát sáng điểm nhấn */
-            terracotta: '#B64635',      /* Đỏ gạch trầm vùng dưới */
-            terracottaDeep: '#8D3936',  /* Ánh phản chiếu cam đất / đỏ gạch đậm */
-            inkMain: '#241E1B',         /* Chữ mực đậm ấm dễ đọc */
-            inkMuted: '#5C463B',        /* Chữ phụ nâu gạch dịu */
-          },
-          boxShadow: {
-            board: '0 24px 54px -18px rgba(30, 52, 67, 0.34), 0 10px 24px -8px rgba(141, 57, 54, 0.22)',
-            card: '0 12px 26px -10px rgba(36, 30, 27, 0.22)',
-            avatarRing: '0 0 0 6px rgba(216, 232, 140, 0.42), 0 0 28px -4px rgba(235, 182, 119, 0.65), 0 16px 32px -10px rgba(30, 52, 67, 0.38)',
-          },
-        },
-      },
-    };
-  </script>
-
   <style>
-    /* Nền chuyển sắc theo chiều dọc bức ảnh Vọng Lạc: xanh lam khói trên -> vàng hổ phách & đào cam giữa -> đỏ gạch & ánh phản chiếu cam đất dưới */
+    :root {
+      /* Bảng màu lấy cảm hứng từ Vọng Lạc */
+      --sky-deep: #2B4555;
+      --sky-mist: #46687A;
+      --paper-cream: #F9EEDB;
+      --paper-soft: #FDF7EC;
+      --amber-sun: #E8B872;
+      --peach-glow: #F2C39A;
+      --terracotta: #B44838;
+      --crimson-deep: #8A3226;
+      --jade-spark: #D8E2B8;
+      --ink-dark: #23333D;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      color: #241E1B;
-      background-color: #F9EEDB;
-      background-image:
-        radial-gradient(ellipse 85% 34% at 50% 4%, rgba(47, 78, 99, 0.28), rgba(30, 52, 67, 0.12) 58%, transparent 82%),
-        radial-gradient(ellipse 90% 38% at 22% 44%, rgba(235, 182, 119, 0.44), transparent 76%),
-        radial-gradient(ellipse 88% 38% at 80% 48%, rgba(232, 155, 108, 0.40), transparent 76%),
-        radial-gradient(ellipse 95% 42% at 50% 92%, rgba(182, 70, 53, 0.28), rgba(141, 57, 54, 0.20) 56%, transparent 84%),
-        linear-gradient(180deg, rgba(47, 78, 99, 0.14) 0%, rgba(235, 182, 119, 0.18) 46%, rgba(232, 155, 108, 0.20) 68%, rgba(182, 70, 53, 0.18) 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--ink-dark);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      width: 100%;
       overflow-x: hidden;
+      /* Nền chuyển sắc mây khói Vọng Lạc tràn toàn màn hình */
+      background:
+        radial-gradient(circle at 15% 12%, rgba(232, 184, 114, 0.32) 0%, transparent 42%),
+        radial-gradient(circle at 85% 22%, rgba(70, 104, 122, 0.35) 0%, transparent 48%),
+        radial-gradient(circle at 50% 88%, rgba(180, 72, 56, 0.28) 0%, transparent 55%),
+        linear-gradient(180deg, #355263 0%, #7C9299 18%, #F6E6CA 46%, #F4CFA8 74%, #C86752 92%, #8F372A 100%);
+      background-attachment: fixed;
     }
 
-    /* Bảng zine chính hòa quyện mây khói từ xanh lam khói lên tới đỏ gạch trầm */
-    .zine-board-bg {
-      background-color: #2F4E63;
-      background-image:
-        radial-gradient(ellipse 85% 36% at 52% 6%, rgba(30, 52, 67, 0.88), transparent 75%),
-        radial-gradient(ellipse 92% 40% at 30% 48%, rgba(235, 182, 119, 0.34), transparent 78%),
-        radial-gradient(ellipse 86% 38% at 78% 54%, rgba(232, 155, 108, 0.32), transparent 78%),
-        radial-gradient(ellipse 96% 42% at 50% 96%, rgba(182, 70, 53, 0.72), rgba(141, 57, 54, 0.56) 65%, transparent 88%),
-        linear-gradient(180deg, #2F4E63 0%, #3E5D6B 34%, #8E6A58 68%, #8D3936 100%);
+    /* Họa tiết vân giấy nhẹ */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image: radial-gradient(rgba(35, 51, 61, 0.16) 1px, transparent 0);
+      background-size: 20px 20px;
+      z-index: 0;
     }
 
-    /* Trạng thái bật chế độ gõ chữ trực tiếp */
-    .live-editing [data-editable="true"] {
-      outline: 2px dashed #B64635;
-      outline-offset: 2px;
-      border-radius: 0.4rem;
-      background-color: rgba(216, 232, 140, 0.32);
+    .zine-card {
+      background: rgba(251, 245, 232, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(43, 69, 85, 0.22);
+      box-shadow: 0 10px 28px rgba(35, 51, 61, 0.12);
+    }
+
+    .zine-card-dark {
+      background: linear-gradient(145deg, rgba(43, 69, 85, 0.95), rgba(58, 90, 107, 0.92));
+      color: #F9EEDB;
+      border: 1.5px solid rgba(232, 184, 114, 0.38);
+      box-shadow: 0 12px 30px rgba(27, 44, 54, 0.22);
+    }
+
+    .zine-card-terracotta {
+      background: linear-gradient(145deg, rgba(180, 72, 56, 0.94), rgba(143, 55, 42, 0.95));
+      color: #FDF7EC;
+      border: 1.5px solid rgba(244, 208, 120, 0.45);
+      box-shadow: 0 12px 30px rgba(138, 50, 38, 0.22);
+    }
+
+    .zine-card-amber {
+      background: linear-gradient(145deg, rgba(244, 214, 162, 0.94), rgba(238, 195, 136, 0.92));
+      color: var(--ink-dark);
+      border: 1.5px solid rgba(180, 72, 56, 0.28);
+      box-shadow: 0 10px 26px rgba(138, 50, 38, 0.12);
+    }
+
+    /* Hiệu ứng khi mở khóa chỉnh sửa */
+    .editing-active [data-editable="true"] {
+      outline: 2px dashed #B44838;
+      outline-offset: 4px;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.45);
       cursor: text;
+      transition: all 0.2s ease;
     }
 
-    .live-editing [data-editable="true"]:focus {
-      outline: 2px solid #8D3936;
-      background-color: rgba(249, 238, 219, 0.95);
+    .editing-active [data-editable="true"]:focus {
+      outline: 2px solid #2B4555;
+      background-color: rgba(255, 255, 255, 0.85);
     }
 
-    /* Vạch cuộn trang trí nhẹ ở cột phải tầng trên */
-    .rail-track {
-      background: linear-gradient(180deg, rgba(216, 232, 140, 0.35), rgba(232, 155, 108, 0.3), rgba(182, 70, 53, 0.35));
+    /* Vòng sáng ngọc & hổ phách quanh avatar */
+    .avatar-halo {
+      box-shadow:
+        0 0 0 6px rgba(249, 238, 219, 0.9),
+        0 0 0 10px rgba(232, 184, 114, 0.65),
+        0 18px 40px rgba(35, 51, 61, 0.28);
     }
   </style>
 </head>
-<body class="min-h-screen py-4 px-3 sm:px-6 lg:py-7 selection:bg-jadeSpark selection:text-smokeDeep">
+<body class="w-full min-h-screen relative z-10">
 
-  <div class="max-w-5xl mx-auto">
+  <!-- TOÀN BỘ NỘI DUNG TRÀN TOÀN MÀN HÌNH (KHÔNG ĐÓNG KHUNG) -->
+  <div id="pageRoot" class="w-full min-h-screen px-4 sm:px-8 lg:px-14 py-5 sm:py-7 flex flex-col justify-between gap-6">
 
-    <!-- =====================================================================
-         1. THANH ĐIỀU HƯỚNG TOPBAR + THANH ĐỊA CHỈ NHỎ PHÍA TRÊN
-         ===================================================================== -->
-    <header class="mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 px-1">
-      <!-- Cụm link điều hướng bên trái -->
-      <nav aria-label="Điều hướng hồ sơ" class="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold">
+    <!-- 1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (KIỂU TRÌNH DUYỆT ZINE) -->
+    <header class="w-full flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#F9EEDB]/30">
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
         <a href="members.html"
-           class="px-3.5 py-1.5 rounded-full bg-terracotta text-sunCream font-bold shadow-sm hover:bg-terracottaDeep transition-colors">
-          ← trang thành viên
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F9EEDB] text-[#2B4555] font-bold text-xs sm:text-sm shadow hover:bg-[#E8B872] hover:text-[#23333D] transition">
+          <span>←</span>
+          <span>Về trang thành viên</span>
         </a>
-        <a href="#basic-info"
-           class="px-3 py-1.5 rounded-full bg-smokeDeep text-sunCream font-bold hover:bg-smokeBlue transition-colors">
-          profile
-        </a>
-        <a href="#middle-tier"
-           class="px-3 py-1.5 rounded-full bg-ivoryCard/85 text-smokeDeep hover:bg-sunCream transition-colors">
-          mục yêu thích
-        </a>
-        <a href="#gallery-strip"
-           class="px-3 py-1.5 rounded-full bg-ivoryCard/85 text-smokeDeep hover:bg-sunCream transition-colors">
-          gallery
-        </a>
-        <a href="#bottom-notes"
-           class="px-3 py-1.5 rounded-full bg-ivoryCard/85 text-smokeDeep hover:bg-sunCream transition-colors">
-          ghi chú
-        </a>
-      </nav>
 
-      <!-- Cụm thanh địa chỉ nhỏ + nút bật chế độ gõ thử trực tiếp bên phải -->
-      <div class="flex flex-wrap items-center justify-center md:justify-end gap-2">
-        <div class="px-3.5 py-1 rounded-full bg-ivoryCard text-terracottaDeep border border-amberGlow text-xs font-bold">
-          góc-cá-nhân
+        <nav class="hidden md:flex items-center gap-1.5 bg-[#2B4555]/75 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-[#F9EEDB]/85 border border-[#F9EEDB]/20">
+          <span class="px-2.5 py-1 rounded-full bg-[#B44838] text-[#FDF7EC]">hồ sơ</span>
+          <span class="px-2.5 py-1 hover:text-white cursor-default">ghi chú</span>
+          <span class="px-2.5 py-1 hover:text-white cursor-default">kỷ niệm</span>
+          <span class="px-2.5 py-1 hover:text-white cursor-default">góc nhỏ</span>
+        </nav>
+      </div>
+
+      <!-- Thanh địa chỉ trang trí + Nút khóa/mở khóa chỉnh sửa bằng mật khẩu -->
+      <div class="flex items-center gap-2 sm:gap-3 ml-auto">
+        <div class="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F9EEDB]/90 text-[#2B4555] text-xs font-semibold border border-[#2B4555]/20 shadow-sm">
+          <span class="px-2 py-0.5 rounded-full bg-[#E8B872] text-[#23333D] font-bold">vọng lạc</span>
+          <span class="opacity-80" data-editable="true" contenteditable="false">member.profile / góc riêng của tui</span>
         </div>
 
-        <div class="flex items-center gap-2 px-3.5 py-1 rounded-full bg-smokeDeep text-sunCream text-xs border border-jadeSpark/55 shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-jadeSpark shrink-0"></span>
-          <span data-editable="true" class="truncate max-w-[160px] sm:max-w-[205px]">profile.local/thanh-vien/tui</span>
-        </div>
-
-        <button id="editToggleBtn"
-                type="button"
-                onclick="toggleEditMode()"
-                class="px-3 py-1 rounded-full bg-amberGlow hover:bg-peachSand text-smokeDeep font-bold text-xs border border-smokeBlue/40 transition-colors">
-          Gõ trực tiếp
-        </button>
-
-        <button type="button"
-                onclick="resetAllTexts()"
-                title="Khôi phục chữ mặc định"
-                class="px-2.5 py-1 rounded-full bg-sunCream/95 hover:bg-ivoryCard text-inkMuted font-semibold text-xs border border-terracottaDeep/30 transition-colors">
-          Đặt lại
+        <button id="toggleEditBtn" onclick="handleToggleEdit()"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#B44838] text-[#FDF7EC] font-bold text-xs sm:text-sm shadow-md hover:bg-[#8A3226] transition cursor-pointer border border-[#F4D078]/50">
+          <span id="lockIcon">🔒</span>
+          <span id="editBtnText">Mở khóa chỉnh sửa</span>
         </button>
       </div>
     </header>
 
-    <!-- Dải thông báo nhỏ khi đang bật chế độ gõ chữ trực tiếp -->
-    <div id="editNotice"
-         class="hidden mb-4 px-4 py-2 rounded-2xl bg-jadeSpark/45 border border-terracotta text-inkMain text-xs sm:text-sm flex items-center justify-between gap-3">
-      <span>
-        Đang bật <strong>Gõ trực tiếp</strong> — bấm vào bất kỳ chữ hoặc khung ghi chú nào có viền đứt nét để tự do viết gì thì ghi.
-      </span>
-      <button type="button" onclick="toggleEditMode(false)" class="font-bold text-terracottaDeep underline shrink-0">
-        Xong
+    <!-- Dải thông báo trạng thái khi đang mở khóa -->
+    <div id="editBanner" class="hidden w-full px-4 py-2.5 rounded-2xl bg-[#2B4555] text-[#F9EEDB] text-xs sm:text-sm font-medium flex flex-wrap items-center justify-between gap-2 border border-[#E8B872]">
+      <span>✨ <strong>Đã mở khóa chỉnh sửa:</strong> Bạn bấm trực tiếp vào bất kỳ đoạn chữ nào trên trang để sửa, sau đó bấm <strong>"Lưu & Khóa lại"</strong> nhé.</span>
+      <button onclick="resetDefaultContent()" class="underline text-[#E8B872] hover:text-white text-xs cursor-pointer">
+        Khôi phục văn bản gốc
       </button>
     </div>
 
-    <!-- =====================================================================
-         2. BẢNG KHUNG LỚN BO GÓC BỌC TOÀN BỘ TRANG (PHONG CÁCH ZINE BOARD)
-         ===================================================================== -->
-    <main class="zine-board-bg rounded-[2.25rem] border-2 border-smokeDeep/85 p-4 sm:p-6 lg:p-8 shadow-board relative">
+    <!-- 2. LƯỚI CHÍNH PHONG CÁCH SCRAPBOOK / ZINE FULL-WIDTH -->
+    <main class="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-start">
 
-      <!-- Viền khung trong tạo chiều sâu bảng zine -->
-      <div class="rounded-[1.75rem] bg-smokeDeep/45 border border-amberGlow/35 p-3.5 sm:p-5 lg:p-7 space-y-6">
+      <!-- CỘT TRÁI (5/12): BASIC INFO + AVATAR HÌNH TRÒN LỚN + VÒNG KÝ HIỆU -->
+      <section class="lg:col-span-5 flex flex-col gap-5">
 
-        <!-- =================================================================
-             TẦNG TRÊN: CHIA 2 CỘT (TRÁI: BASIC INFO + AVATAR TRÒN LỚN;
-             PHẢI: TIÊU ĐỀ LỚN + 3 PILL TAG + PERSONALITY + GHI CHÚ DÀI)
-             ================================================================= -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-
-          <!-- CỘT TRÁI TẦNG TRÊN (6/12): Thẻ "basic info" ở trên + Ảnh tròn lớn ở dưới -->
-          <div class="lg:col-span-6 space-y-5">
-
-            <!-- Thẻ basic info nổi màu kem nắng có khuy tròn góc phải -->
-            <section id="basic-info"
-                     class="relative rounded-[1.5rem] bg-sunCream text-inkMain p-5 sm:p-6 border border-amberGlow shadow-card">
-              <!-- Khuy tròn trang trí góc trên bên phải -->
-              <div aria-hidden="true"
-                   class="hidden sm:flex items-center justify-center w-9 h-9 rounded-full border-4 border-peachSand bg-ivoryCard absolute -top-2 -right-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-terracottaDeep"></span>
-              </div>
-
-              <h1 data-editable="true"
-                  class="text-2xl sm:text-3xl font-extrabold tracking-tight text-smokeDeep mb-2.5">
-                basic info
-              </h1>
-
-              <div data-editable="true" class="text-xs sm:text-sm text-inkMain leading-relaxed space-y-2">
-                <p>
-                  Xin chào, đây là góc hồ sơ nhỏ của tui. Bạn có thể ghi họ tên hoặc biệt danh, quê quán/nơi đang sống, ngày sinh và vài dòng giới thiệu mở đầu thật tự nhiên vào khung này.
-                </p>
-                <p>
-                  Bảng màu chuyển từ xanh lam khói trầm ở trên, vàng hổ phách và đào cam ở giữa xuống đỏ gạch trầm ở dưới, điểm thêm chút ánh ngọc dịu mắt.
-                </p>
-              </div>
-            </section>
-
-            <!-- Khối ảnh chân dung tròn lớn (224px / 256px / 288px) + biểu tượng trang trí xung quanh -->
-            <section aria-label="Ảnh chân dung cá nhân"
-                     class="relative rounded-[1.5rem] bg-smokeDeep/65 border border-amberGlow/35 p-4 sm:p-5">
-              <!-- Biểu tượng nhỏ góc trên trái & trên phải -->
-              <div class="flex items-center justify-between text-jadeSpark mb-1 px-1">
-                <span data-editable="true" class="text-sm font-bold" title="Biểu tượng trang trí">✺</span>
-                <span data-editable="true" class="text-sm font-bold" title="Biểu tượng trang trí">✦</span>
-              </div>
-
-              <!-- Khu vực ảnh đại diện hình tròn lớn chính giữa -->
-              <div class="relative flex flex-col items-center justify-center my-1">
-                <div class="w-[224px] h-[224px] sm:w-[256px] sm:h-[256px] lg:w-[288px] lg:h-[288px] rounded-full overflow-hidden border-4 border-ivoryCard bg-ivoryCard shadow-avatarRing">
-                  <!-- Thay src="avatar.jpg" bằng ảnh của bạn -->
-                  <img src="avatar.jpg"
-                       alt="Ảnh đại diện cá nhân"
-                       onerror="this.onerror=null; this.src='https://placehold.co/640x640/F9EEDB/2F4E63?text=avatar.jpg';"
-                       class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                </div>
-
-                <!-- Dải ký hiệu & nhẫn trang trí ngay dưới vòng tròn avatar -->
-                <div class="w-full max-w-xs mt-3 flex items-center justify-between gap-2 text-sunCream">
-                  <span data-editable="true"
-                        class="w-9 h-9 rounded-full bg-smokeBlue/85 border border-amberGlow/60 flex items-center justify-center text-sm font-bold text-amberGlow">
-                    ♌
-                  </span>
-
-                  <div class="flex-1 flex items-center justify-center gap-2">
-                    <span class="h-[1px] flex-1 border-t border-dashed border-amberGlow/65"></span>
-                    <span data-editable="true"
-                          class="px-3 py-1 rounded-full bg-ivoryCard text-terracottaDeep font-extrabold text-xs border border-amberGlow shadow-sm">
-                      ♓
-                    </span>
-                    <span class="h-[1px] flex-1 border-t border-dashed border-amberGlow/65"></span>
-                  </div>
-
-                  <span data-editable="true"
-                        class="w-9 h-9 rounded-full bg-terracottaDeep/85 border border-jadeSpark/55 flex items-center justify-center text-sm font-bold text-jadeSpark">
-                    ♈
-                  </span>
-                </div>
-              </div>
-
-              <!-- Hàng thông tin nhỏ góc dưới bên trái & nhãn phải -->
-              <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
-                <div data-editable="true"
-                     class="px-3 py-2 rounded-xl bg-sunCream/95 text-inkMain text-[11px] leading-snug max-w-[165px] border border-amberGlow">
-                  <div>cung / năng lượng: <strong class="text-terracottaDeep">tự do</strong></div>
-                  <div>tâm trạng hôm nay: <strong class="text-smokeDeep">nhẹ nhàng</strong></div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span data-editable="true" class="text-xs font-extrabold tracking-wider text-jadeSpark uppercase">
-                    VIBE
-                  </span>
-                  <span class="w-8 h-4 rounded-full bg-ivoryCard/25 border border-jadeSpark/65 p-0.5 flex items-center justify-end">
-                    <span class="w-3 h-3 rounded-full bg-jadeSpark"></span>
-                  </span>
-                </div>
-              </div>
-            </section>
-
+        <!-- Khối Basic Info (Giấy kem sáng) -->
+        <div class="zine-card rounded-[28px] p-5 sm:p-7 relative">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#355263] text-[#F9EEDB] text-[11px] font-bold tracking-wider uppercase"
+                  data-editable="true" contenteditable="false">
+              @thành-viên • profile
+            </span>
+            <span class="w-7 h-7 rounded-full bg-[#E8B872]/50 border border-[#B44838]/30 flex items-center justify-center text-xs font-bold text-[#B44838]">
+              ✦
+            </span>
           </div>
 
-          <!-- CỘT PHẢI TẦNG TRÊN (6/12): Tên lớn + 3 pill tag + Personality + Khối ghi chú dài -->
-          <div class="lg:col-span-6 space-y-5 relative">
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#2B4555] mb-3"
+              data-editable="true" contenteditable="false">
+            thông tin cơ bản
+          </h2>
 
-            <!-- Tiêu đề tên lớn nổi bật bên phải trên cùng -->
-            <div class="pt-1 pb-1 text-center lg:text-right">
-              <div data-editable="true"
-                   class="inline-block text-4xl sm:text-5xl font-extrabold tracking-tight text-sunCream drop-shadow-[0_3px_12px_rgba(30,52,67,0.45)]">
-                tên của tui
-              </div>
-            </div>
-
-            <!-- 3 pill tag nằm ngang hàng bên dưới tiêu đề -->
-            <div class="grid grid-cols-3 gap-2.5">
-              <div data-editable="true"
-                   class="py-2 px-3 rounded-full bg-ivoryCard text-smokeDeep font-bold text-xs sm:text-sm text-center border border-amberGlow shadow-sm truncate">
-                200x
-              </div>
-              <div data-editable="true"
-                   class="py-2 px-3 rounded-full bg-sunCream text-inkMain font-bold text-xs sm:text-sm text-center border border-peachSand shadow-sm truncate">
-                biệt danh
-              </div>
-              <div data-editable="true"
-                   class="py-2 px-3 rounded-full bg-ivoryCard text-terracottaDeep font-bold text-xs sm:text-sm text-center border border-amberGlow shadow-sm truncate">
-                01.01
-              </div>
-            </div>
-
-            <!-- Khối "personality" có ảnh vuông nhỏ bên trái + chữ bên phải + dấu 3 chấm dọc -->
-            <section aria-label="Tính cách"
-                     class="relative rounded-[1.5rem] bg-ivoryCard text-inkMain p-4 sm:p-5 border-2 border-amberGlow shadow-card">
-              <!-- Nút tròn nhỏ nối góc trái -->
-              <span aria-hidden="true"
-                    class="hidden sm:flex items-center justify-center w-6 h-6 rounded-full bg-terracotta text-sunCream text-xs font-extrabold border-2 border-sunCream absolute -left-3 top-6">
-                +
-              </span>
-
-              <div class="flex items-start justify-between gap-2 mb-2">
-                <h2 data-editable="true" class="text-xl sm:text-2xl font-extrabold text-terracottaDeep">
-                  personality
-                </h2>
-                <span aria-hidden="true" class="text-smokeDeep font-extrabold tracking-widest text-sm leading-none select-none">
-                  ⋮
-                </span>
-              </div>
-
-              <div class="flex items-start gap-3.5">
-                <!-- Ảnh vuông nhỏ bên trái -->
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-terracotta bg-sunCream shrink-0">
-                  <img src="avatar.jpg"
-                       alt="Ảnh nhỏ tính cách"
-                       onerror="this.onerror=null; this.src='https://placehold.co/200x200/F9EEDB/B64635?text=mini';"
-                       class="w-full h-full object-cover" />
-                </div>
-
-                <!-- Đoạn chữ mô tả tính cách bên phải -->
-                <div data-editable="true" class="text-xs sm:text-sm text-inkMain leading-relaxed flex-1">
-                  Tui là kiểu người <strong class="text-terracottaDeep">ấm áp, hay quan sát</strong> và thích những không gian yên tĩnh. Khi đã thân quen thì khá nói nhiều, thích chia sẻ ý tưởng và luôn cố gắng mang lại năng lượng dễ chịu cho mọi người xung quanh.
-                </div>
-              </div>
-            </section>
-
-            <!-- Khối chữ dài bên dưới + vạch dọc trang trí bên phải -->
-            <section aria-label="Ghi chú bản thân"
-                     class="relative rounded-[1.5rem] bg-smokeDeep/75 border border-peachSand/45 p-4 sm:p-5 pr-6 sm:pr-7">
-              <!-- Thanh ray dọc bên mép phải -->
-              <div aria-hidden="true"
-                   class="rail-track absolute right-2 top-4 bottom-4 w-1.5 rounded-full">
-                <div class="w-full h-12 rounded-full bg-jadeSpark/85"></div>
-              </div>
-
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <h2 data-editable="true" class="text-lg sm:text-xl font-extrabold text-amberGlow leading-snug">
-                  vài dòng về<br />cách sống của tui
-                </h2>
-                <span data-editable="true" class="text-lg text-jadeSpark" title="Biểu tượng">✦</span>
-              </div>
-
-              <div data-editable="true" class="text-xs sm:text-sm text-sunCream/95 leading-relaxed space-y-2">
-                <p>
-                  Đây là khung chữ dài để bạn viết thêm về nhịp sống, cách bạn kết nối với bạn bè, những điều khiến bạn dễ đồng cảm hoặc bất kỳ câu chuyện nào bạn muốn kể rõ hơn.
-                </p>
-                <p>
-                  Bấm nút <strong>Gõ trực tiếp</strong> ở phía trên để sửa thẳng nội dung này theo ý bạn.
-                </p>
-              </div>
-            </section>
-
+          <div class="space-y-2.5 text-sm sm:text-[15px] leading-relaxed text-[#23333D]/90">
+            <p data-editable="true" contenteditable="false">
+              Chào cậu, đây là góc lưu giữ những mảnh ghép nhỏ của <strong>tên bạn ở đây</strong> — một người thích sự mộc mạc, trầm lắng nhưng luôn giữ một ngọn lửa ấm áp bên trong.
+            </p>
+            <p data-editable="true" contenteditable="false">
+              Bạn có thể bấm nút <em>Mở khóa chỉnh sửa</em> ở góc trên cùng bên phải, nhập mật khẩu để tự do viết lại lời giới thiệu theo đúng chất riêng của mình.
+            </p>
           </div>
         </div>
 
-        <!-- Dấu chấm phân tầng nhỏ chính giữa -->
-        <div aria-hidden="true" class="flex items-center justify-center gap-2 py-0.5">
-          <span class="w-2 h-2 rounded-full bg-amberGlow/60"></span>
-          <span class="w-2 h-2 rounded-full bg-jadeSpark"></span>
-          <span class="w-2 h-2 rounded-full bg-peachSand/70"></span>
+        <!-- Khối Avatar Tròn Lớn + Vòng tròn trang trí (Xanh lam khói trầm) -->
+        <div class="zine-card-dark rounded-[30px] p-6 sm:p-8 flex flex-col items-center justify-center relative overflow-hidden">
+          <!-- Ký hiệu nhỏ hai bên giống ảnh mẫu -->
+          <div class="w-full flex items-center justify-between text-[#E8B872] text-sm font-bold px-2 mb-3 opacity-85">
+            <span>⚙ ✦</span>
+            <span class="text-xs tracking-widest uppercase text-[#D8E2B8]" data-editable="true" contenteditable="false">chân dung</span>
+            <span>☆ ✦</span>
+          </div>
+
+          <!-- KHUNG AVATAR HÌNH TRÒN CỠ LỚN -->
+          <div class="relative my-2 flex items-center justify-center">
+            <div class="w-56 h-56 sm:w-64 sm:h-64 xl:w-72 xl:h-72 rounded-full overflow-hidden avatar-halo bg-[#46687A] relative group">
+              <img id="avatarPreview"
+                   src="avatar.jpg"
+                   onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80';"
+                   alt="Ảnh đại diện"
+                   class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" />
+            </div>
+
+            <!-- Huy hiệu tròn nhỏ gắn góc ảnh -->
+            <div class="absolute -bottom-1 right-3 w-12 h-12 rounded-full bg-[#B44838] border-2 border-[#F9EEDB] flex items-center justify-center text-[#F9EEDB] font-extrabold text-xs shadow-lg"
+                 data-editable="true" contenteditable="false">
+              01
+            </div>
+          </div>
+
+          <!-- Dải vòng cung & 3 huy hiệu tròn bên dưới avatar giống mẫu -->
+          <div class="w-full max-w-sm mt-5 pt-4 border-t border-dashed border-[#E8B872]/40 flex items-center justify-between gap-2">
+            <div class="px-3 py-2 rounded-2xl bg-[#23333D]/70 border border-[#E8B872]/35 text-[11px] leading-snug text-[#F9EEDB]/90"
+                 data-editable="true" contenteditable="false">
+              cung hoàng đạo<br/>
+              <strong class="text-[#E8B872]">tự do • mộng mơ</strong>
+            </div>
+
+            <div class="w-12 h-12 rounded-full bg-[#F9EEDB] text-[#2B4555] font-extrabold text-base flex items-center justify-center border-2 border-[#E8B872] shadow"
+                 data-editable="true" contenteditable="false">
+              VL
+            </div>
+
+            <div class="px-3 py-2 rounded-2xl bg-[#B44838]/85 border border-[#F4D078]/40 text-[11px] leading-snug text-right text-[#FDF7EC]"
+                 data-editable="true" contenteditable="false">
+              tính cách<br/>
+              <strong class="text-[#F4D078]">INFJ / INFP</strong>
+            </div>
+          </div>
         </div>
 
-        <!-- =================================================================
-             TẦNG GIỮA: CHIA 2 BÊN (TRÁI: KHUNG DANH SÁCH + KHỐI QUOTE;
-             PHẢI: BỘ 3 ẢNH ĐỨNG XẾP NGANG CẠNH NHAU KÈM NHÃN NHỎ)
-             ================================================================= -->
-        <div id="middle-tier" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+      </section>
 
-          <!-- BÊN TRÁI TẦNG GIỮA (6/12): Khung danh sách/mục yêu thích + Khối quote có biểu tượng trái -->
-          <div class="lg:col-span-6 space-y-4 flex flex-col justify-between">
-            <!-- Khung danh sách / mục yêu thích nổi màu kem sáng -->
-            <div class="rounded-[1.5rem] bg-sunCream text-inkMain p-4 sm:p-5 border border-peachSand shadow-card space-y-3">
-              <div class="flex items-center justify-between gap-2">
-                <span data-editable="true"
-                      class="px-3 py-1 rounded-full bg-smokeBlue text-sunCream font-bold text-xs">
-                  mục yêu thích &amp; ghi nhớ
-                </span>
-                <span data-editable="true" class="text-xs font-semibold text-terracottaDeep">
-                  xem thêm ›
-                </span>
-              </div>
+      <!-- CỘT PHẢI (7/12): TÊN LỚN + 3 PILL TAGS + PERSONALITY + MỤC TIÊU + GALLERY 3 ẢNH -->
+      <section class="lg:col-span-7 flex flex-col gap-5">
 
-              <!-- 2 dòng mục nhỏ -->
-              <div class="space-y-2">
-                <div data-editable="true"
-                     class="flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-ivoryCard border border-amberGlow/70 text-xs sm:text-sm">
-                  <div>
-                    <div class="font-bold text-smokeDeep">Cuốn sách / Bộ phim tâm đắc</div>
-                    <div class="text-[11px] text-inkMuted">Ghi tên tác phẩm hoặc điều bạn thích</div>
-                  </div>
-                  <span class="text-terracotta font-bold">♡</span>
-                </div>
-
-                <div data-editable="true"
-                     class="flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-ivoryCard border border-amberGlow/70 text-xs sm:text-sm">
-                  <div>
-                    <div class="font-bold text-smokeDeep">Bài hát / Bản nhạc hay nghe</div>
-                    <div class="text-[11px] text-inkMuted">Ghi playlist hoặc giai điệu gắn với bạn</div>
-                  </div>
-                  <span class="text-terracotta font-bold">♡</span>
-                </div>
-              </div>
-
-              <!-- Hàng thẻ nhỏ + pill đỏ gạch bên phải -->
-              <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-                <span data-editable="true"
-                      class="px-3 py-1 rounded-full bg-peachSand/35 text-inkMain text-xs font-semibold border border-peachSand/60">
-                  #gu-riêng
-                </span>
-                <span data-editable="true"
-                      class="px-3.5 py-1 rounded-full bg-terracotta text-sunCream font-bold text-xs shadow-sm">
-                  thích-nhất
-                </span>
-              </div>
-
-              <!-- Khối quote/ghi chú có biểu tượng bên trái -->
-              <div class="rounded-2xl bg-ivoryCard border border-amberGlow p-3.5 flex items-center gap-3">
-                <div data-editable="true"
-                     class="w-11 h-11 rounded-xl bg-terracottaDeep text-jadeSpark flex items-center justify-center text-lg font-extrabold shrink-0">
-                  ✦
-                </div>
-                <p data-editable="true" class="text-xs sm:text-sm italic text-inkMain leading-snug">
-                  “Cứ đi từng bước thật vững, mỗi ngày lưu giữ lại một chút ánh sáng của riêng mình.”
-                </p>
-              </div>
-            </div>
+        <!-- Tên nghệ danh lớn + 3 thẻ pill ngang -->
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-wrap items-end justify-between gap-4 px-1">
+            <h1 class="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#F9EEDB] drop-shadow-[0_3px_10px_rgba(35,51,61,0.45)]"
+                data-editable="true" contenteditable="false">
+              tên của bạn
+            </h1>
+            <span class="px-3.5 py-1 rounded-full bg-[#F9EEDB]/90 text-[#B44838] text-xs font-extrabold uppercase tracking-wider shadow-sm"
+                  data-editable="true" contenteditable="false">
+              ✦ vọng lạc archive
+            </span>
           </div>
 
-          <!-- BÊN PHẢI TẦNG GIỮA (6/12): Bộ 3 ảnh đứng xếp ngang cạnh nhau kèm nhãn nhỏ -->
-          <div id="gallery-strip"
-               class="lg:col-span-6 rounded-[1.5rem] bg-terracottaDeep/55 border border-amberGlow/45 p-4 sm:p-5 flex flex-col justify-between">
-            <div class="grid grid-cols-3 gap-2.5 sm:gap-3">
-              <!-- Ảnh đứng 1 -->
-              <figure class="relative rounded-2xl overflow-hidden border-2 border-ivoryCard bg-ivoryCard shadow-card">
-                <img src="avatar.jpg"
-                     alt="Ảnh kỷ niệm 1"
-                     onerror="this.onerror=null; this.src='https://placehold.co/260x380/F7E7CA/2F4E63?text=anh+01';"
-                     class="w-full h-40 sm:h-48 object-cover" />
-                <figcaption data-editable="true"
-                            class="px-2 py-1 text-[10px] sm:text-[11px] font-bold text-smokeDeep bg-sunCream text-center truncate">
-                  khoảnh khắc 01
-                </figcaption>
-              </figure>
-
-              <!-- Ảnh đứng 2 -->
-              <figure class="relative rounded-2xl overflow-hidden border-2 border-jadeSpark bg-ivoryCard shadow-card">
-                <span data-editable="true"
-                      class="px-2 py-0.5 rounded-full bg-terracotta text-sunCream font-extrabold text-[10px] absolute top-2 right-2 z-10">
-                  ★
-                </span>
-                <img src="avatar.jpg"
-                     alt="Ảnh kỷ niệm 2"
-                     onerror="this.onerror=null; this.src='https://placehold.co/260x380/EBB677/241E1B?text=anh+02';"
-                     class="w-full h-40 sm:h-48 object-cover" />
-                <figcaption data-editable="true"
-                            class="px-2 py-1 text-[10px] sm:text-[11px] font-bold text-terracottaDeep bg-sunCream text-center truncate">
-                  khoảnh khắc 02
-                </figcaption>
-              </figure>
-
-              <!-- Ảnh đứng 3 -->
-              <figure class="relative rounded-2xl overflow-hidden border-2 border-ivoryCard bg-ivoryCard shadow-card">
-                <img src="avatar.jpg"
-                     alt="Ảnh kỷ niệm 3"
-                     onerror="this.onerror=null; this.src='https://placehold.co/260x380/E89B6C/241E1B?text=anh+03';"
-                     class="w-full h-40 sm:h-48 object-cover" />
-                <figcaption data-editable="true"
-                            class="px-2 py-1 text-[10px] sm:text-[11px] font-bold text-inkMain bg-sunCream text-center truncate">
-                  khoảnh khắc 03
-                </figcaption>
-              </figure>
+          <!-- 3 thẻ pill thông tin nhanh -->
+          <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+            <div class="rounded-full bg-[#F9EEDB]/92 border border-[#2B4555]/25 py-2 px-4 text-center text-xs sm:text-sm font-bold text-[#2B4555] shadow-sm"
+                 data-editable="true" contenteditable="false">
+              2009
             </div>
-
-            <!-- Dòng nhãn nhỏ dưới 3 bức ảnh -->
-            <div class="mt-3 flex items-center justify-between gap-2 px-1 text-xs">
-              <span data-editable="true" class="px-3 py-0.5 rounded-full bg-sunCream/25 text-sunCream font-semibold">
-                góc ảnh nhỏ
-              </span>
-              <span data-editable="true" class="text-jadeSpark font-bold">
-                xem album ›
-              </span>
+            <div class="rounded-full bg-[#E8B872] border border-[#B44838]/30 py-2 px-4 text-center text-xs sm:text-sm font-bold text-[#23333D] shadow-sm"
+                 data-editable="true" contenteditable="false">
+              biệt danh / lớp
+            </div>
+            <div class="rounded-full bg-[#F9EEDB]/92 border border-[#2B4555]/25 py-2 px-4 text-center text-xs sm:text-sm font-bold text-[#B44838] shadow-sm"
+                 data-editable="true" contenteditable="false">
+              bến tre • vn
             </div>
           </div>
-
         </div>
 
-        <!-- =================================================================
-             TẦNG DƯỚI: KHỐI GHI CHÚ TỰ DO ("THÍCH GÌ THÌ GHI") VỚI ẢNH VUÔNG
-             NHỎ HAI BÊN VÀ THANH CHẤM BI
-             ================================================================= -->
-        <section id="bottom-notes" aria-label="Khung ghi chú tự do" class="space-y-2.5">
-          <div class="flex flex-wrap items-center justify-between gap-2 px-1">
-            <h2 data-editable="true"
-                class="text-xl sm:text-2xl font-extrabold tracking-tight text-sunCream">
-              sở thích &amp; ghi gì thì ghi
-            </h2>
-            <div data-editable="true" class="text-xs font-semibold text-jadeSpark">
-              #ghi-chú-tự-do #thành-viên
-            </div>
+        <!-- Khối Personality (Giấy kem viền đỏ gạch) -->
+        <div class="zine-card rounded-[28px] p-5 sm:p-6 border-2 border-[#B44838]/40">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-[#2B4555]"
+                data-editable="true" contenteditable="false">
+              cá tính & sắc màu
+            </h3>
+            <span class="text-[#B44838] font-black tracking-widest text-lg">⋮</span>
           </div>
 
-          <!-- Khung ngang: ảnh vuông trái + khung chữ tự do giữa + ảnh tròn phải + chấm bi -->
-          <div class="rounded-[1.6rem] bg-ivoryCard border-2 border-peachSand p-3.5 sm:p-4 flex flex-col sm:flex-row items-center gap-3.5 shadow-card">
-            <!-- Ảnh vuông nhỏ bên trái -->
-            <div class="w-20 h-20 rounded-2xl overflow-hidden border-2 border-terracotta bg-sunCream shrink-0">
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div class="w-24 h-28 sm:w-28 sm:h-32 rounded-2xl overflow-hidden shrink-0 border-2 border-[#E8B872] bg-[#46687A] shadow">
               <img src="avatar.jpg"
-                   alt="Ảnh sở thích bên trái"
-                   onerror="this.onerror=null; this.src='https://placehold.co/180x180/F9EEDB/2F4E63?text=note';"
+                   onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80';"
+                   alt="Ảnh phụ"
                    class="w-full h-full object-cover" />
             </div>
 
-            <!-- Khung ghi chữ tự do ở giữa -->
-            <div class="flex-1 w-full rounded-2xl bg-terracottaDeep text-sunCream px-4 py-3 border border-amberGlow/55">
-              <div data-editable="true" class="text-xs sm:text-sm leading-relaxed">
-                Tui thích ghi gì thì ghi vô đây nè: sở thích đặc biệt, danh sách việc cần làm, lời nhắn gửi nhóm, vài dòng nhật ký ngắn hay những ý tưởng chợt lóe lên trong ngày. Bấm <strong>Gõ trực tiếp</strong> để viết thoải mái!
-              </div>
-            </div>
-
-            <!-- Ảnh tròn nhỏ bên phải + cụm chấm bi trang trí -->
-            <div class="flex sm:flex-col items-center justify-between sm:justify-center gap-2 shrink-0">
-              <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-smokeBlue bg-sunCream">
-                <img src="avatar.jpg"
-                     alt="Ảnh nhỏ bên phải"
-                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/EBB677/241E1B?text=★';"
-                     class="w-full h-full object-cover" />
-              </div>
-              <div aria-hidden="true" class="flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-smokeBlue"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-amberGlow"></span>
-              </div>
+            <div class="flex-1 text-sm sm:text-[15px] leading-relaxed text-[#23333D]"
+                 data-editable="true" contenteditable="false">
+              Một chút điềm tĩnh của bầu trời xanh khói, pha thêm sự ấm áp của nắng chiều hổ phách. Tui thích quan sát những điều nhỏ bé xung quanh, trân trọng sự chân thành và luôn cố gắng làm tốt từng việc mình đã nhận lời.
             </div>
           </div>
-        </section>
+        </div>
 
-      </div>
+        <!-- Khối Ghi chú nổi bật (Nền xanh lam khói đậm có thanh dọc hổ phách) -->
+        <div class="zine-card-dark rounded-[28px] p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-[#E8B872] font-bold"
+                 data-editable="true" contenteditable="false">góc suy ngẫm</p>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-[#F9EEDB]"
+                  data-editable="true" contenteditable="false">
+                điều tui luôn giữ trong lòng
+              </h3>
+            </div>
+            <span class="text-2xl">🪐</span>
+          </div>
+
+          <div class="mt-3 pl-4 border-l-4 border-[#E8B872] text-sm sm:text-[15px] leading-relaxed text-[#F9EEDB]/90"
+               data-editable="true" contenteditable="false">
+            Không cần phải ồn ào để chứng minh giá trị của bản thân. Cứ âm thầm tích lũy, giữ nhịp độ riêng của mình, rồi những điều xứng đáng sẽ tự khắc tìm đến đúng thời điểm.
+          </div>
+        </div>
+
+        <!-- Hàng giữa dưới: Danh sách / Quote (Trái) + 3 Khung Ảnh Dọc (Phải) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+
+          <!-- Trái: Mục yêu thích & Trích dẫn -->
+          <div class="md:col-span-5 zine-card-amber rounded-[26px] p-4 sm:p-5 flex flex-col justify-between gap-3">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-[#2B4555] text-[#F9EEDB] text-[11px] font-bold"
+                    data-editable="true" contenteditable="false">danh sách nhỏ</span>
+              <span class="text-xs font-bold text-[#B44838]">♡</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="p-2.5 rounded-xl bg-[#FDF7EC]/90 border border-[#2B4555]/15 text-xs">
+                <div class="font-bold text-[#2B4555]" data-editable="true" contenteditable="false">Cuốn sách / Bộ phim thích</div>
+                <div class="text-[#23333D]/75" data-editable="true" contenteditable="false">Vọng Lạc • Những ngày nắng nhẹ</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-[#FDF7EC]/90 border border-[#2B4555]/15 text-xs">
+                <div class="font-bold text-[#2B4555]" data-editable="true" contenteditable="false">Giai điệu hay nghe</div>
+                <div class="text-[#23333D]/75" data-editable="true" contenteditable="false">Nhạc không lời & ballad mộc</div>
+              </div>
+            </div>
+
+            <blockquote class="p-3 rounded-xl bg-[#B44838] text-[#FDF7EC] text-xs italic leading-relaxed"
+                        data-editable="true" contenteditable="false">
+              “Giữ lòng trong như nước, giữ tâm ấm như nắng chiều.”
+            </blockquote>
+          </div>
+
+          <!-- Phải: 3 Thẻ Ảnh Đứng (Moodboard Vọng Lạc) -->
+          <div class="md:col-span-7 zine-card rounded-[26px] p-4 sm:p-5 flex flex-col justify-between gap-3">
+            <div class="grid grid-cols-3 gap-2.5 h-44 sm:h-48">
+              <div class="rounded-2xl overflow-hidden relative bg-[#355263] border border-[#2B4555]/20 flex flex-col justify-end p-2.5 text-[#F9EEDB]"
+                   style="background: linear-gradient(180deg, #355263 0%, #6D8B99 100%);">
+                <span class="text-[10px] uppercase tracking-wider opacity-80">01</span>
+                <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">mây khói</span>
+              </div>
+
+              <div class="rounded-2xl overflow-hidden relative bg-[#E8B872] border border-[#B44838]/25 flex flex-col justify-end p-2.5 text-[#23333D]"
+                   style="background: linear-gradient(180deg, #F4D078 0%, #E5A967 100%);">
+                <span class="text-[10px] uppercase tracking-wider opacity-80">02</span>
+                <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">nắng ấm</span>
+              </div>
+
+              <div class="rounded-2xl overflow-hidden relative bg-[#B44838] border border-[#F4D078]/30 flex flex-col justify-end p-2.5 text-[#FDF7EC]"
+                   style="background: linear-gradient(180deg, #C8604B 0%, #8A3226 100%);">
+                <span class="text-[10px] uppercase tracking-wider opacity-80">03</span>
+                <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">đỏ gạch</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 pt-1">
+              <span class="px-3 py-1 rounded-full bg-[#E8B872]/60 text-[#23333D] text-xs font-bold"
+                    data-editable="true" contenteditable="false">#bảng-màu-riêng</span>
+              <span class="text-xs font-bold text-[#B44838]"
+                    data-editable="true" contenteditable="false">lưu giữ khoảnh khắc →</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
     </main>
 
-    <!-- =====================================================================
-         3. CHÂN TRANG CHIA 2 CỘT CHỮ NHỎ + NÚT QUAY VỀ TRANG THÀNH VIÊN
-         ===================================================================== -->
-    <footer class="mt-4 px-2 pb-4 grid grid-cols-1 sm:grid-cols-12 gap-4 items-center text-[11px] sm:text-xs text-inkMuted">
-      <div data-editable="true" class="sm:col-span-5 leading-relaxed">
-        Trang hồ sơ cá nhân bố cục zine collage lấy cảm hứng từ sắc màu Vọng Lạc. Thay ảnh bằng file <code class="font-bold text-terracottaDeep">avatar.jpg</code>.
+    <!-- 3. DẢI KHUNG TỰ DO DƯỚI CÙNG (SỞ THÍCH & GHI CHÚ MỞ RỘNG FULL-WIDTH) -->
+    <section class="w-full zine-card-terracotta rounded-[30px] p-5 sm:p-7">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-3.5 py-1 rounded-full bg-[#F9EEDB] text-[#8A3226] text-xs font-extrabold uppercase tracking-wider"
+                data-editable="true" contenteditable="false">
+            sở thích & góc tự do
+          </span>
+          <span class="text-xs text-[#F4D078] font-semibold"
+                data-editable="true" contenteditable="false">
+            #thủ-công #cắm-hoa #sáng-tạo #tự-nhiên
+          </span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#F9EEDB]"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#E8B872]"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#D8E2B8]"></span>
+        </div>
       </div>
 
-      <!-- Nút quay về trang thành viên chính giữa chân trang -->
-      <div class="sm:col-span-2 flex justify-center">
-        <a href="members.html"
-           title="Quay về trang thành viên"
-           class="w-10 h-10 rounded-full bg-terracotta hover:bg-terracottaDeep text-sunCream flex items-center justify-center font-extrabold text-sm border-2 border-sunCream shadow-sm transition-transform hover:scale-105">
-          ←
-        </a>
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <!-- Ô ghi chú tự do 1 -->
+        <div class="md:col-span-8 bg-[#2B4555]/90 rounded-2xl p-4 sm:p-5 border-l-4 border-[#F4D078] text-sm sm:text-[15px] leading-relaxed text-[#F9EEDB]"
+             data-editable="true" contenteditable="false">
+          Đây là khoảng trống tự do để bạn muốn ghi gì thì ghi: có thể là sở thích làm đồ thủ công, cắm hoa, những dự định sắp tới, hoặc vài dòng nhật ký ngắn gửi cho chính mình. Bấm nút <strong>Mở khóa chỉnh sửa</strong> ở trên cùng để thay đổi toàn bộ nội dung này nhé!
+        </div>
 
-      <div class="sm:col-span-5 flex flex-col sm:items-end justify-between gap-2 text-center sm:text-right leading-relaxed">
-        <span data-editable="true">
-          Góc thành viên • Bấm <strong>Gõ trực tiếp</strong> để chỉnh sửa nội dung ngay trên trang.
-        </span>
-        <a href="members.html" class="font-bold text-terracottaDeep hover:underline">
-          Quay về trang thành viên (members.html) →
-        </a>
+        <!-- Ô ghi chú tự do 2 -->
+        <div class="md:col-span-4 bg-[#F9EEDB] text-[#23333D] rounded-2xl p-4 sm:p-5 border border-[#E8B872] flex flex-col justify-between gap-2">
+          <div class="text-xs font-extrabold uppercase tracking-wider text-[#B44838]"
+               data-editable="true" contenteditable="false">
+            lời nhắn gửi nhỏ
+          </div>
+          <p class="text-xs sm:text-sm leading-relaxed"
+             data-editable="true" contenteditable="false">
+            Cảm ơn cậu đã ghé thăm góc nhỏ này của tui. Chúc cậu một ngày thật bình yên và nhiều niềm vui!
+          </p>
+        </div>
       </div>
+    </section>
+
+    <!-- 4. CHÂN TRANG (FOOTER) -->
+    <footer class="w-full pt-2 pb-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#F9EEDB]/90">
+      <p data-editable="true" contenteditable="false">
+        © Hồ sơ cá nhân thành viên • Thiết kế theo sắc độ Vọng Lạc.
+      </p>
+      <a href="members.html"
+         class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#F9EEDB]/95 text-[#2B4555] font-bold hover:bg-[#E8B872] transition shadow-sm">
+        <span>← Quay lại danh sách thành viên</span>
+      </a>
     </footer>
 
   </div>
 
+  <!-- MODAL NHẬP MẬT KHẨU ĐỂ MỞ KHÓA CHỈNH SỬA -->
+  <div id="passwordModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#23333D]/70 backdrop-blur-sm px-4">
+    <div class="w-full max-w-sm rounded-3xl bg-[#F9EEDB] border-2 border-[#B44838] p-6 shadow-2xl text-[#23333D]">
+      <div class="flex items-center justify-between mb-3">
+        <span class="px-3 py-1 rounded-full bg-[#2B4555] text-[#F9EEDB] text-xs font-bold">Xác nhận quyền sửa</span>
+        <button onclick="closePasswordModal()" class="text-[#8A3226] font-bold text-lg leading-none cursor-pointer">✕</button>
+      </div>
+
+      <h3 class="text-xl font-extrabold text-[#2B4555] mb-1">Nhập mật khẩu</h3>
+      <p class="text-xs text-[#23333D]/80 mb-4">
+        Nhập đúng mật khẩu để mở khóa chỉnh sửa nội dung trực tiếp trên trang.
+      </p>
+
+      <input id="passwordInput"
+             type="password"
+             placeholder="Nhập mật khẩu..."
+             onkeydown="if(event.key==='Enter') verifyPassword()"
+             class="w-full px-4 py-2.5 rounded-xl bg-white border border-[#2B4555]/30 text-sm focus:outline-none focus:border-[#B44838] mb-2" />
+
+      <p id="passwordError" class="hidden text-xs font-semibold text-[#B44838] mb-3">
+        Mật khẩu chưa đúng, bạn thử lại nhé!
+      </p>
+
+      <div class="flex items-center justify-end gap-2 mt-4">
+        <button onclick="closePasswordModal()"
+                class="px-4 py-2 rounded-full text-xs font-bold text-[#2B4555] hover:bg-[#2B4555]/10 cursor-pointer">
+          Hủy
+        </button>
+        <button onclick="verifyPassword()"
+                class="px-5 py-2 rounded-full bg-[#B44838] text-[#FDF7EC] text-xs font-bold hover:bg-[#8A3226] shadow cursor-pointer">
+          Mở khóa
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const defaultTexts = new Map();
+    // ==========================================
+    // ĐỔI MẬT KHẨU CỦA BẠN NGAY TẠI DÒNG DƯỚI NÀY:
+    const EDIT_PASSWORD = "123456";
+    // ==========================================
+
+    const STORAGE_KEY = "vong_lac_profile_content_v1";
     let isEditing = false;
 
-    /**
-     * Lưu nội dung gốc của các vùng cho phép gõ trực tiếp để khôi phục khi bấm "Đặt lại".
-     */
-    function setupEditableFields() {
-      try {
-        const fields = document.querySelectorAll('[data-editable="true"]');
-        fields.forEach((field, index) => {
-          const id = String(index);
-          field.dataset.fieldId = id;
-          defaultTexts.set(id, field.innerHTML);
-        });
-      } catch (error) {
-        console.error('Không thể khởi tạo vùng gõ trực tiếp:', error);
-      }
-    }
+    const editableNodes = document.querySelectorAll('[data-editable="true"]');
+    const defaultContents = Array.from(editableNodes).map(el => el.innerHTML);
 
-    /**
-     * Bật hoặc tắt chế độ gõ chữ trực tiếp trên các ô được đánh dấu.
-     * @param {boolean} [forceValue] - Trạng thái ép buộc nếu cần.
-     */
-    function toggleEditMode(forceValue) {
-      try {
-        isEditing = typeof forceValue === 'boolean' ? forceValue : !isEditing;
-
-        const fields = document.querySelectorAll('[data-editable="true"]');
-        const toggleBtn = document.getElementById('editToggleBtn');
-        const noticeBar = document.getElementById('editNotice');
-
-        fields.forEach((field) => {
-          field.contentEditable = isEditing ? 'true' : 'false';
-        });
-
-        document.body.classList.toggle('live-editing', isEditing);
-
-        if (isEditing) {
-          toggleBtn.textContent = 'Đang gõ (Tắt)';
-          toggleBtn.classList.remove('bg-amberGlow', 'hover:bg-peachSand', 'text-smokeDeep');
-          toggleBtn.classList.add('bg-terracotta', 'hover:bg-terracottaDeep', 'text-sunCream');
-          noticeBar.classList.remove('hidden');
-        } else {
-          toggleBtn.textContent = 'Gõ trực tiếp';
-          toggleBtn.classList.remove('bg-terracotta', 'hover:bg-terracottaDeep', 'text-sunCream');
-          toggleBtn.classList.add('bg-amberGlow', 'hover:bg-peachSand', 'text-smokeDeep');
-          noticeBar.classList.add('hidden');
+    // Tự động nạp lại nội dung đã lưu trước đó (nếu có)
+    window.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          editableNodes.forEach((el, idx) => {
+            if (parsed[idx] !== undefined) {
+              el.innerHTML = parsed[idx];
+            }
+          });
+        } catch (e) {
+          console.error("Lỗi đọc dữ liệu đã lưu:", e);
         }
-      } catch (error) {
-        console.error('Lỗi khi chuyển đổi chế độ gõ trực tiếp:', error);
+      }
+    });
+
+    function handleToggleEdit() {
+      if (!isEditing) {
+        // Mở hộp thoại nhập mật khẩu
+        const modal = document.getElementById("passwordModal");
+        const input = document.getElementById("passwordInput");
+        const err = document.getElementById("passwordError");
+        err.classList.add("hidden");
+        input.value = "";
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        setTimeout(() => input.focus(), 50);
+      } else {
+        // Lưu nội dung và khóa lại
+        saveAndLock();
       }
     }
 
-    /**
-     * Khôi phục toàn bộ nội dung chữ về trạng thái mặc định ban đầu.
-     */
-    function resetAllTexts() {
-      try {
-        const fields = document.querySelectorAll('[data-editable="true"]');
-        fields.forEach((field) => {
-          const id = field.dataset.fieldId;
-          if (defaultTexts.has(id)) {
-            field.innerHTML = defaultTexts.get(id);
-          }
+    function closePasswordModal() {
+      const modal = document.getElementById("passwordModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function verifyPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const err = document.getElementById("passwordError");
+
+      if (input === EDIT_PASSWORD) {
+        closePasswordModal();
+        unlockEditing();
+      } else {
+        err.classList.remove("hidden");
+      }
+    }
+
+    function unlockEditing() {
+      isEditing = true;
+      document.getElementById("pageRoot").classList.add("editing-active");
+      document.getElementById("editBanner").classList.remove("hidden");
+      document.getElementById("lockIcon").textContent = "🔓";
+      document.getElementById("editBtnText").textContent = "Lưu & Khóa lại";
+
+      editableNodes.forEach(el => {
+        el.setAttribute("contenteditable", "true");
+      });
+    }
+
+    function saveAndLock() {
+      isEditing = false;
+      document.getElementById("pageRoot").classList.remove("editing-active");
+      document.getElementById("editBanner").classList.add("hidden");
+      document.getElementById("lockIcon").textContent = "🔒";
+      document.getElementById("editBtnText").textContent = "Mở khóa chỉnh sửa";
+
+      const currentContents = [];
+      editableNodes.forEach(el => {
+        el.setAttribute("contenteditable", "false");
+        currentContents.push(el.innerHTML);
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentContents));
+    }
+
+    function resetDefaultContent() {
+      if (confirm("Bạn muốn đưa toàn bộ chữ về lại nội dung mặc định ban đầu chứ?")) {
+        editableNodes.forEach((el, idx) => {
+          el.innerHTML = defaultContents[idx];
         });
-      } catch (error) {
-        console.error('Lỗi khi đặt lại nội dung mặc định:', error);
+        localStorage.removeItem(STORAGE_KEY);
       }
     }
-
-    window.addEventListener('DOMContentLoaded', setupEditableFields);
   </script>
 </body>
 </html>

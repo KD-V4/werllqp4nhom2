@@ -133,7 +133,7 @@
       <!-- Thanh địa chỉ trang trí + Nút khóa/mở khóa chỉnh sửa bằng mật khẩu -->
       <div class="flex items-center gap-2 sm:gap-3 ml-auto">
         <div class="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F9EEDB]/90 text-[#2B4555] text-xs font-semibold border border-[#2B4555]/20 shadow-sm">
-          <span class="px-2 py-0.5 rounded-full bg-[#E8B872] text-[#23333D] font-bold">vọng lạc</span>
+          <span class="px-2 py-0.5 rounded-full bg-[#E8B872] text-[#23333D] font-bold">...</span>
           <span class="opacity-80" data-editable="true" contenteditable="false">member.profile / góc riêng của tui</span>
         </div>
 
@@ -338,26 +338,45 @@
             </blockquote>
           </div>
 
-          <!-- Phải: 3 Thẻ Ảnh Đứng (Moodboard Vọng Lạc) -->
+          <!-- Phải: 3 Thẻ Ảnh Đứng (Moodboard) -->
           <div class="md:col-span-7 zine-card rounded-[26px] p-4 sm:p-5 flex flex-col justify-between gap-3">
-            <div class="grid grid-cols-3 gap-2.5 h-44 sm:h-48">
-              <div class="rounded-2xl overflow-hidden relative bg-[#355263] border border-[#2B4555]/20 flex flex-col justify-end p-2.5 text-[#F9EEDB]"
-                   style="background: linear-gradient(180deg, #355263 0%, #6D8B99 100%);">
-                <span class="text-[10px] uppercase tracking-wider opacity-80">01</span>
-                <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">mây khói</span>
+            <div class="grid grid-cols-3 gap-2.5 h-48 sm:h-56">
+              <!-- Ảnh 1 -->
+              <div class="rounded-2xl overflow-hidden relative bg-[#355263] border border-[#2B4555]/20 group">
+                <img src="anh1.jpg"
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=500&q=80';"
+                     alt="Kỷ niệm 1"
+                     class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#23333D]/85 via-[#23333D]/40 to-transparent p-2.5 text-[#F9EEDB]">
+                  <span class="block text-[10px] uppercase tracking-wider opacity-80">01</span>
+                  <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">khoảnh khắc 1</span>
+                </div>
               </div>
-
-              <div class="rounded-2xl overflow-hidden relative bg-[#E8B872] border border-[#B44838]/25 flex flex-col justify-end p-2.5 text-[#23333D]"
-                   style="background: linear-gradient(180deg, #F4D078 0%, #E5A967 100%);">
-                <span class="text-[10px] uppercase tracking-wider opacity-80">02</span>
-                <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">nắng ấm</span>
+            
+              <!-- Ảnh 2 -->
+              <div class="rounded-2xl overflow-hidden relative bg-[#E8B872] border border-[#B44838]/25 group">
+                <img src="anh2.jpg"
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80';"
+                     alt="Kỷ niệm 2"
+                     class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#23333D]/85 via-[#23333D]/40 to-transparent p-2.5 text-[#F9EEDB]">
+                  <span class="block text-[10px] uppercase tracking-wider opacity-80">02</span>
+                  <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">khoảnh khắc 2</span>
+                </div>
               </div>
-
-              <div class="rounded-2xl overflow-hidden relative bg-[#B44838] border border-[#F4D078]/30 flex flex-col justify-end p-2.5 text-[#FDF7EC]"
-                   style="background: linear-gradient(180deg, #C8604B 0%, #8A3226 100%);">
-                <span class="text-[10px] uppercase tracking-wider opacity-80">03</span>
-                <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">đỏ gạch</span>
+            
+              <!-- Ảnh 3 -->
+              <div class="rounded-2xl overflow-hidden relative bg-[#B44838] border border-[#F4D078]/30 group">
+                <img src="anh3.jpg"
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=500&q=80';"
+                     alt="Kỷ niệm 3"
+                     class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#23333D]/85 via-[#23333D]/40 to-transparent p-2.5 text-[#F9EEDB]">
+                  <span class="block text-[10px] uppercase tracking-wider opacity-80">03</span>
+                  <span class="text-xs font-bold leading-tight" data-editable="true" contenteditable="false">khoảnh khắc 3</span>
+                </div>
               </div>
+</div>
             </div>
 
             <div class="flex items-center justify-between gap-2 pt-1">
@@ -383,7 +402,7 @@
           </span>
           <span class="text-xs text-[#F4D078] font-semibold"
                 data-editable="true" contenteditable="false">
-            #thủ-công #cắm-hoa #sáng-tạo #tự-nhiên
+            #kimduyen #12t2 #tinhoc #chuyenbentre
           </span>
         </div>
         <div class="flex items-center gap-1.5">
@@ -397,7 +416,7 @@
         <!-- Ô ghi chú tự do 1 -->
         <div class="md:col-span-8 bg-[#2B4555]/90 rounded-2xl p-4 sm:p-5 border-l-4 border-[#F4D078] text-sm sm:text-[15px] leading-relaxed text-[#F9EEDB]"
              data-editable="true" contenteditable="false">
-          Đây là khoảng trống tự do để bạn muốn ghi gì thì ghi: có thể là sở thích làm đồ thủ công, cắm hoa, những dự định sắp tới, hoặc vài dòng nhật ký ngắn gửi cho chính mình. Bấm nút <strong>Mở khóa chỉnh sửa</strong> ở trên cùng để thay đổi toàn bộ nội dung này nhé!
+          Đây là khoảng trống tự do để bạn muốn ghi gì thì ghi: Bấm nút <strong>Mở khóa chỉnh sửa</strong> ở trên cùng để thay đổi toàn bộ nội dung này nhé!
         </div>
 
         <!-- Ô ghi chú tự do 2 -->
@@ -408,7 +427,7 @@
           </div>
           <p class="text-xs sm:text-sm leading-relaxed"
              data-editable="true" contenteditable="false">
-            Cảm ơn cậu đã ghé thăm góc nhỏ này của tui. Chúc cậu một ngày thật bình yên và nhiều niềm vui!
+            Cảm ơn bạn đã ghé thăm góc nhỏ này. Chúc bạn một ngày thật bình yên và nhiều niềm vui!
           </p>
         </div>
       </div>
